@@ -19,7 +19,7 @@
 
 read answer
 
-if  [$(answer) = "yes"]
+if  [$(answer) = yes]
 
 then
          echo "$na you have chosen to update your system first...it may take few minute"
