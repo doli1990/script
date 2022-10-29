@@ -14,26 +14,19 @@
 
 #step 1 Uninstall the old version
 
-        echo " we will remove the old docker files if there is any"
+         echo " we will remove the old docker files if there is any"
 
-         sudo yum remove docker \
-                  docker-client \
-                  docker-client-latest \
-                  docker-common \
-                  docker-latest \
-                  docker-latest-logrotate \
-                  docker-logrotate \
-                  docker-engine
+         sudo yum remove docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine
+         
 # step 2 set up the docker repository (Before you install Docker Engine for the first time on a new host machine, you need to set up the Docker repository. Afterward, you can install and update Docker from the repository)
-echo "set up the repository first"
+
+        echo "set up the repository first"
 
 #Install the yum-utils package (which provides the yum-config-manager utility) and set up the repository.
 
         sudo yum install -y yum-utils
-
-        sudo yum-config-manager \
-                --add-repo \
-        https://download.docker.com/linux/centos/docker-ce.repo
+        
+        sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 
         sleep 3
 
@@ -51,9 +44,13 @@ then
 
         sleep 3
 
-# star the Docker service
+# check the status, start and enable the Docker deamon
 
+        sudo systemctl status docker
+        
         sudo systemctl start docker
+        
+        sudo systemctl enable docker
 
         sudo docker run hello-world
 else
